@@ -215,8 +215,34 @@
         .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(59, 77, 53, 0.4); }
 
         /* ==========================================================================
-           BLOQUES OLIVO PREMIUM
+           BLOQUES OLIVO PREMIUM Y PROTAGONISMO ANIVERSARIO
            ========================================================================== */
+        .anniversary-badge {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        .anniversary-badge span {
+            font-family: var(--font-title);
+            font-size: 6.5rem;
+            line-height: 1;
+            display: block;
+            background: linear-gradient(110deg, var(--main-light) 30%, var(--gold) 50%, var(--main-light) 70%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shineSweep 4.5s linear infinite;
+        }
+        .anniversary-badge p {
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            letter-spacing: 5px;
+            margin-top: -10px;
+            font-weight: 600;
+            color: var(--main-dark);
+        }
+
         .olive-elegant {
             background: linear-gradient(135deg, #2E3B29 0%, #3B4D35 50%, #4A5D23 100%);
             color: var(--white); width: calc(100% + 60px); margin: 30px -30px;
@@ -304,9 +330,6 @@
         .venue-type { font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 3px; color: var(--main-light); margin-bottom: 8px; font-weight: 600;}
         .venue-name { font-family: var(--font-title); font-size: 2rem; color: var(--main-dark); margin-bottom: 12px; }
         .venue-time { font-family: var(--font-sans); font-weight: 600; font-size: 1.2rem; color: var(--text-color); margin-bottom: 20px; }
-        
-        .map-iframe-container { width: 100%; height: 240px; overflow: hidden; margin-bottom: 20px; border: 1px solid rgba(184,156,114,0.3); border-radius: 4px;}
-        .map-iframe-container iframe { width: 100%; height: 100%; object-fit: cover; }
 
         .timeline-section { width: 100%; padding: 10px; position: relative; text-align: left; margin-bottom: 20px; z-index: 2;}
         .timeline-section::before { content: ''; position: absolute; left: 24px; top: 10px; bottom: 10px; width: 1px; background-color: rgba(184, 156, 114, 0.4); z-index: 0; }
@@ -323,18 +346,13 @@
 
         .hotel-card {
             width: 100%; background: var(--bg-color);
-            border-radius: 4px; overflow: hidden; margin-bottom: 30px; 
+            border-radius: 4px; overflow: hidden; margin-bottom: 20px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid rgba(184, 156, 114, 0.25);
             transition: transform 0.3s ease; position: relative; z-index: 2;
         }
         .hotel-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-        .hotel-img-wrapper { width: 100%; height: 200px; overflow: hidden; border-bottom: 1px solid rgba(184, 156, 114, 0.2); }
-        .hotel-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
-        .hotel-card:hover .hotel-img { transform: scale(1.08); }
-        .hotel-content { padding: 25px; text-align: center; }
-        .hotel-content h4 { font-family: var(--font-title); font-size: 1.6rem; color: var(--main-dark); margin-bottom: 5px; }
-        .hotel-btn { width: 100%; padding: 14px; font-size: 0.85rem; background: transparent; color: var(--main-dark); border: 1px solid var(--main-dark); box-shadow: none;}
-        .hotel-btn:hover { background: var(--main-dark); color: var(--white); }
+        .hotel-content { padding: 30px 25px; text-align: center; }
+        .hotel-content h4 { font-family: var(--font-title); font-size: 1.6rem; color: var(--main-dark); margin-top: 15px; }
 
         .dress-code-title { font-family: var(--font-sans); font-size: 0.9rem; letter-spacing: 4px; margin-bottom: 15px; font-weight: 500; position: relative; z-index: 2;}
         .dress-code-main { font-family: var(--font-title); font-size: 3.5rem; margin-bottom: 15px; line-height: 1.1; position: relative; z-index: 2;}
@@ -367,25 +385,12 @@
 
         .deadline-text { font-family: var(--font-sans); font-size: 0.75rem; color: var(--text-color); text-align: center; margin-top: 25px; letter-spacing: 2px; font-weight: 600;}
 
-        .photo-wrapper {
-            position: relative; width: 100%; overflow: hidden; border-radius: 4px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06); border: 1px solid rgba(184, 156, 114, 0.2); margin-bottom: 25px; z-index: 2;
-        }
-        .clickable-photo {
-            width: 100%; height: auto; object-fit: cover; display: block;
-            cursor: zoom-in; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-        .photo-wrapper:hover .clickable-photo { transform: scale(1.06); }
-        
         .hero-image-wrapper {
             width: 100%; position: relative; z-index: 2; margin: 15px 0 25px 0;
         }
         .hero-image-wrapper img {
             width: 100%; height: auto; display: block; object-fit: cover; cursor: zoom-in; border-radius: 4px;
         }
-
-        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 30px 0; width: 100%; }
-        .gallery-grid .photo-wrapper { margin-bottom: 0; }
 
         #lightbox {
             position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(46, 59, 41, 0.95); z-index: 10000;
@@ -422,6 +427,7 @@
             .column:not(:last-child) { border-right: none; border-bottom: 1px solid rgba(184, 156, 114, 0.3); }
             .olive-elegant { width: calc(100% + 60px); margin: 30px -30px 40px -30px; }
             .names-container span.name { font-size: 3.8rem; }
+            .anniversary-badge span { font-size: 5.5rem; }
         }
     </style>
 </head>
@@ -432,7 +438,7 @@
         <source src="assets/song.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- LIGHTBOX PARA FOTOS -->
+    <!-- LIGHTBOX PARA FOTO HERO -->
     <div id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
         <img id="lightbox-img" src="" alt="Ampliación" onclick="event.stopPropagation()">
@@ -464,9 +470,13 @@
             <div class="column">
                 <div class="sparkle-container" id="sparkles-1"></div>
 
-                <p class="intro-text anim-el fade-in-up">20 Aniversario</p>
+                <!-- BADGE 20 ANIVERSARIO (NUEVO PROTAGONISTA) -->
+                <div class="anniversary-badge anim-el scale-in">
+                    <span>20</span>
+                    <p>AÑOS DE CASADOS</p>
+                </div>
                 
-                <div class="names-container anim-el scale-in" style="transition-delay: 0.2s;">
+                <div class="names-container anim-el scale-in" style="transition-delay: 0.2s; margin-top: 10px;">
                     <span class="name">TERE</span>
                     <span class="ampersand">&</span>
                     <span class="name">JAVIER</span>
@@ -479,12 +489,14 @@
                     <img src="assets/1.jpg" onclick="openLightbox(this.src)" alt="Tere y Javier">
                 </div>
 
-                <p class="welcome-phrase anim-el fade-in-up" style="transition-delay: 0.5s;">
-                    "Nosotros Tere y Javier <br><br>
-                    Hoy nos sigue uniendo el amor, las metas y sueños juntos, el respeto y el cuidado del uno por el otro, motivos en nuestras vidas para:<br><br>
-                    <strong>¡Celebrar nuestro 20 Aniversario de Bodas!</strong><br><br>
-                    Con la bendición de Dios y de nuestros padres renovaremos nuestros votos y nos encantará que este día, al igual que hace 20 años, ¡nos acompañen!"
-                </p>
+                <div class="welcome-phrase anim-el fade-in-up" style="transition-delay: 0.5s;">
+                    Nosotros Tere y Javier <br><br>
+                    Hoy nos sigue uniendo el amor, las metas y sueños juntos, el respeto y el cuidado del uno por el otro, motivos en nuestras vidas para:<br>
+                    
+                    <p style="font-family: var(--font-script); font-size: 3.2rem; color: var(--gold); margin: 25px 0; line-height: 1.1; text-shadow: 0 5px 15px rgba(184,156,114,0.2);">¡Celebrar nuestro 20 Aniversario de Bodas!</p>
+                    
+                    Con la bendición de Dios y de nuestros padres renovaremos nuestros votos y nos encantará que este día, al igual que hace 20 años, ¡nos acompañen!
+                </div>
 
                 <div class="parents-section anim-el fade-in-up" style="transition-delay: 0.6s;">
                     <p style="font-family: var(--font-script); font-size: 2.6rem; color: var(--gold); margin-bottom: 25px;">Con la bendición de nuestros padres</p>
@@ -547,10 +559,7 @@
                     <p class="venue-type">CEREMONIA RELIGIOSA</p>
                     <h3 class="venue-name">Templo Parroquial Santa María de la Asunción</h3>
                     <p class="venue-time">Tequisquiapan, Qro. &bull; 1:40 P.M.</p>
-                    <div class="map-iframe-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4062.56442765492!2d-99.89410982449591!3d20.523182604950776!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d39e07e928eb7f%3A0x94a00639c4ac7e8a!2sTemplo%20Parroquial%20Santa%20Mar%C3%ADa%20de%20la%20Asunci%C3%B3n!5e1!3m2!1ses-419!2smx!4v1791346424784!5m2!1ses-419!2smx" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                    </div>
-                    <a href="https://maps.app.goo.gl/4n7UCADGH2ayZuQ39" target="_blank" class="btn" style="width: 100%;"><i class="fa-solid fa-location-dot"></i> UBICACIÓN EXACTA</a>
+                    <a href="https://maps.app.goo.gl/4n7UCADGH2ayZuQ39" target="_blank" class="btn" style="width: 100%; margin-top: 20px;"><i class="fa-solid fa-location-dot"></i> UBICACIÓN EXACTA</a>
                 </div>
                 
                 <div class="venue-card anim-el fade-in-up" style="transition-delay: 0.2s;">
@@ -558,10 +567,7 @@
                     <p class="venue-type">RECEPCIÓN Y COMIDA</p>
                     <h3 class="venue-name">Restaurante La 100 Plaza Relox</h3>
                     <p class="venue-time">3:30 P.M.</p>
-                    <div class="map-iframe-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4062.5396624565346!2d-99.89344322449594!3d20.52411560491955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d39fda37ef9035%3A0xb8f962da19d9a786!2sLa%20100%20-%20Cocina%20Mediterranea%20Fusi%C3%B3n!5e1!3m2!1ses-419!2smx!4v1791346520564!5m2!1ses-419!2smx" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                    </div>
-                    <a href="https://maps.app.goo.gl/5VEg1ksuyTyTTCfb7" target="_blank" class="btn" style="width: 100%;"><i class="fa-solid fa-location-dot"></i> UBICACIÓN EXACTA</a>
+                    <a href="https://maps.app.goo.gl/5VEg1ksuyTyTTCfb7" target="_blank" class="btn" style="width: 100%; margin-top: 20px;"><i class="fa-solid fa-location-dot"></i> UBICACIÓN EXACTA</a>
                 </div>
 
                 <div class="olive-elegant anim-el fade-in-up" style="padding: 40px 30px;">
@@ -601,42 +607,27 @@
                 <div class="divider anim-el fade-in-up"><i class="fa-solid fa-bed" style="font-size: 1rem;"></i></div>
                 <p class="anim-el fade-in-up" style="font-size: 1.1rem; margin-bottom: 25px; font-style: italic;">Sugerencias para tu comodidad:</p>
 
-                <!-- HOTEL 1 -->
+                <!-- HOTEL 1 (Sin foto ni mapa) -->
                 <div class="hotel-card anim-el fade-in-up" style="transition-delay: 0.1s;">
-                    <div class="hotel-img-wrapper">
-                        <img src="assets/hotel1.jpg" alt="Hotel Merlot Inn" class="hotel-img">
-                    </div>
                     <div class="hotel-content">
+                        <i class="fa-solid fa-hotel" style="font-size: 2.5rem; color: var(--gold);"></i>
                         <h4>Hotel Merlot Inn</h4>
-                        <div style="display: flex; gap: 10px; margin-top: 20px;">
-                            <a href="https://www.google.com/maps/search/Hotel+Merlot+Inn+Tequisquiapan/" target="_blank" class="btn hotel-btn" style="flex: 1;"><i class="fa-solid fa-map"></i> VER EN MAPA</a>
-                        </div>
                     </div>
                 </div>
 
-                <!-- HOTEL 2 -->
+                <!-- HOTEL 2 (Sin foto ni mapa) -->
                 <div class="hotel-card anim-el fade-in-up" style="transition-delay: 0.2s;">
-                    <div class="hotel-img-wrapper">
-                        <img src="assets/hotel2.jpg" alt="Hotel La Veranda" class="hotel-img">
-                    </div>
                     <div class="hotel-content">
+                        <i class="fa-solid fa-hotel" style="font-size: 2.5rem; color: var(--gold);"></i>
                         <h4>Hotel La Veranda</h4>
-                        <div style="display: flex; gap: 10px; margin-top: 20px;">
-                            <a href="https://www.google.com/maps/search/Hotel+La+Veranda+Tequisquiapan/" target="_blank" class="btn hotel-btn" style="flex: 1;"><i class="fa-solid fa-map"></i> VER EN MAPA</a>
-                        </div>
                     </div>
                 </div>
 
-                <!-- HOTEL 3 -->
+                <!-- HOTEL 3 (Sin foto ni mapa) -->
                 <div class="hotel-card anim-el fade-in-up" style="transition-delay: 0.3s;">
-                    <div class="hotel-img-wrapper">
-                        <img src="assets/hotel3.jpg" alt="Hotel Real de Tx" class="hotel-img">
-                    </div>
                     <div class="hotel-content">
+                        <i class="fa-solid fa-hotel" style="font-size: 2.5rem; color: var(--gold);"></i>
                         <h4>Hotel Real de Tx</h4>
-                        <div style="display: flex; gap: 10px; margin-top: 20px;">
-                            <a href="https://www.google.com/maps/search/Hotel+Real+de+Tx+Tequisquiapan/" target="_blank" class="btn hotel-btn" style="flex: 1;"><i class="fa-solid fa-map"></i> VER EN MAPA</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -645,24 +636,8 @@
             <div class="column">
                 <div class="sparkle-container" id="sparkles-3"></div>
                 
-                <h2 class="anim-el fade-in-up" style="font-size: 2.4rem; margin-bottom: 5px;">NUESTROS MOMENTOS</h2>
-                <div class="divider anim-el fade-in-up"><i class="fa-solid fa-camera" style="font-size: 1rem;"></i></div>
-                <p class="anim-el fade-in-up" style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">Coleccionando momentos inolvidables...</p>
-
-                <div class="gallery-grid anim-el fade-in-up">
-                    <div class="photo-wrapper" style="grid-column: span 2;">
-                        <img src="assets/4.jpg" class="clickable-photo" style="height:250px;" onclick="openLightbox(this.src)" alt="Momento 1">
-                    </div>
-                    <div class="photo-wrapper">
-                        <img src="assets/5.jpg" class="clickable-photo" style="height:180px;" onclick="openLightbox(this.src)" alt="Momento 2">
-                    </div>
-                    <div class="photo-wrapper">
-                        <img src="assets/6.jpg" class="clickable-photo" style="height:180px;" onclick="openLightbox(this.src)" alt="Momento 3">
-                    </div>
-                </div>
-                
                 <!-- EVENTO SOLO ADULTOS -->
-                <div class="editorial-form-box anim-el scale-in" style="margin-top: 30px; text-align: center; border-color: var(--gold);">
+                <div class="editorial-form-box anim-el scale-in" style="margin-top: 0; text-align: center; border-color: var(--gold);">
                     <i class="fa-solid fa-ban" style="font-size: 2.2rem; color: var(--gold); margin-bottom: 15px;"></i>
                     <h3 style="font-size: 1.6rem; margin-bottom: 15px; color: var(--main-dark);">Evento Exclusivo para Adultos</h3>
                     <p style="font-size: 1.05rem; font-style: italic; line-height: 1.6; color: var(--text-color);">"Respetuosamente, hemos decidido que nuestra celebración sea un evento exclusivo para adultos sin niños y adolescentes. Esperamos que disfruten de una merecida noche de celebración."</p>
@@ -791,7 +766,6 @@
             try {
                 if (audio) {
                     let playPromise = audio.play();
-                    // Validamos si el navegador soporta promesas para el audio
                     if (playPromise !== undefined) {
                         playPromise.then(() => {
                             if (audioIcon) {
@@ -839,7 +813,7 @@
             }
         }
 
-        // --- LIGHTBOX GALERÍA ---
+        // --- LIGHTBOX GALERÍA PARA FOTO HERO ---
         function openLightbox(src) {
             const lb = document.getElementById('lightbox');
             const lbImg = document.getElementById('lightbox-img');
