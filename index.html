@@ -309,11 +309,6 @@
         
         .welcome-phrase { font-family: var(--font-body); font-size: 1.1rem; line-height: 1.8; color: var(--text-color); margin: 15px 0 25px 0; font-style: italic; position: relative; z-index: 2;}
 
-        .parents-section { margin: 30px 0; width: 100%; position: relative; z-index: 2;}
-        .parents-group { margin-bottom: 30px; }
-        .parents-group h4 { font-family: var(--font-sans); font-size: 0.85rem; letter-spacing: 2px; color: var(--gold); margin-bottom: 10px; text-transform: uppercase; font-weight: 600;}
-        .parents-group p { font-family: var(--font-script); font-size: 2rem; line-height: 1.3; color: var(--main-dark); font-weight: 500;}
-
         .save-date-title { font-family: var(--font-sans); font-size: 0.95rem; letter-spacing: 3px; margin-top: 30px; margin-bottom: 5px; color: var(--main-light); font-weight: 600;}
         .save-date-date { font-family: var(--font-title); font-size: clamp(2.8rem, 6vw, 3.8rem); margin-bottom: 5px; white-space: nowrap; }
         
@@ -385,11 +380,35 @@
 
         .deadline-text { font-family: var(--font-sans); font-size: 0.75rem; color: var(--text-color); text-align: center; margin-top: 25px; letter-spacing: 2px; font-weight: 600;}
 
+        /* GALERÍA DE FOTOS */
         .hero-image-wrapper {
             width: 100%; position: relative; z-index: 2; margin: 15px 0 25px 0;
         }
         .hero-image-wrapper img {
             width: 100%; height: auto; display: block; object-fit: cover; cursor: zoom-in; border-radius: 4px;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            width: 100%;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        .photo-gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: zoom-in;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .photo-gallery img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         #lightbox {
@@ -438,7 +457,7 @@
         <source src="assets/song.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- LIGHTBOX PARA FOTO HERO -->
+    <!-- LIGHTBOX PARA FOTOS -->
     <div id="lightbox" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
         <img id="lightbox-img" src="" alt="Ampliación" onclick="event.stopPropagation()">
@@ -470,10 +489,10 @@
             <div class="column">
                 <div class="sparkle-container" id="sparkles-1"></div>
 
-                <!-- BADGE 20 ANIVERSARIO (NUEVO PROTAGONISTA) -->
+                <!-- BADGE ANIVERSARIO (AJUSTADO) -->
                 <div class="anniversary-badge anim-el scale-in">
                     <span>20</span>
-                    <p>AÑOS DE CASADOS</p>
+                    <p>ANIVERSARIO</p>
                 </div>
                 
                 <div class="names-container anim-el scale-in" style="transition-delay: 0.2s; margin-top: 10px;">
@@ -495,20 +514,8 @@
                     
                     <p style="font-family: var(--font-script); font-size: 3.2rem; color: var(--gold); margin: 25px 0; line-height: 1.1; text-shadow: 0 5px 15px rgba(184,156,114,0.2);">¡Celebrar nuestro 20 Aniversario de Bodas!</p>
                     
-                    Con la bendición de Dios y de nuestros padres renovaremos nuestros votos y nos encantará que este día, al igual que hace 20 años, ¡nos acompañen!
-                </div>
-
-                <div class="parents-section anim-el fade-in-up" style="transition-delay: 0.6s;">
-                    <p style="font-family: var(--font-script); font-size: 2.6rem; color: var(--gold); margin-bottom: 25px;">Con la bendición de nuestros padres</p>
-                    
-                    <div class="parents-group">
-                        <h4>Padres de la Novia</h4>
-                        <p>Vidal Almaraz<br>Ofelia Duran</p>
-                    </div>
-                    <div class="parents-group">
-                        <h4>Padres del Novio</h4>
-                        <p>Benito Zúñiga<br>Estela Torres</p>
-                    </div>
+                    <!-- PÁRRAFO AJUSTADO (Se removió la parte de los padres) -->
+                    Con la bendición de Dios renovaremos nuestros votos y nos encantará que este día, al igual que hace 20 años, ¡nos acompañen!
                 </div>
 
                 <div class="divider anim-el fade-in-up"><i class="fa-solid fa-heart" style="font-size: 0.8rem;"></i></div>
@@ -603,6 +610,22 @@
                     </div>
                 </div>
 
+                <!-- SECCIÓN DE GALERÍA DE FOTOS AGREGADA -->
+                <h2 class="anim-el fade-in-up" style="font-size: 2.4rem; margin-top: 30px;">NUESTROS MOMENTOS</h2>
+                <div class="divider anim-el fade-in-up"><i class="fa-regular fa-image" style="font-size: 1rem;"></i></div>
+                <div class="photo-gallery anim-el fade-in-up" style="transition-delay: 0.2s;">
+                    <img src="assets/2.jpg" onclick="openLightbox(this.src)" alt="Foto 2">
+                    <img src="assets/3.jpg" onclick="openLightbox(this.src)" alt="Foto 3">
+                    <img src="assets/4.jpg" onclick="openLightbox(this.src)" alt="Foto 4">
+                    <img src="assets/5.jpg" onclick="openLightbox(this.src)" alt="Foto 5">
+                    <img src="assets/6.jpg" onclick="openLightbox(this.src)" alt="Foto 6">
+                    <img src="assets/7.jpg" onclick="openLightbox(this.src)" alt="Foto 7">
+                    <img src="assets/8.jpg" onclick="openLightbox(this.src)" alt="Foto 8">
+                    <img src="assets/9.jpg" onclick="openLightbox(this.src)" alt="Foto 9">
+                    <img src="assets/10.jpg" onclick="openLightbox(this.src)" alt="Foto 10">
+                    <img src="assets/11.jpg" onclick="openLightbox(this.src)" alt="Foto 11">
+                </div>
+
                 <h2 class="anim-el fade-in-up" style="font-size: 2.4rem; margin-top: 30px;">HOSPEDAJE</h2>
                 <div class="divider anim-el fade-in-up"><i class="fa-solid fa-bed" style="font-size: 1rem;"></i></div>
                 <p class="anim-el fade-in-up" style="font-size: 1.1rem; margin-bottom: 25px; font-style: italic;">Sugerencias para tu comodidad:</p>
@@ -647,6 +670,8 @@
                     <p class="dress-code-title">CÓDIGO DE VESTIMENTA</p>
                     <h2 class="dress-code-main">Formal Casual</h2>
                     <p style="font-size: 1.1rem; font-style: italic; opacity: 0.95; line-height: 1.7; margin-top: 15px;">Nos encantará verlos lucir espectaculares en esta tarde tan mágica y especial para nosotros.</p>
+                    <!-- AJUSTE CÓDIGO DE VESTIMENTA MUJERES -->
+                    <p style="font-size: 0.95rem; font-weight: 600; color: var(--gold-light); margin-top: 15px; letter-spacing: 1px;">Mujeres evitar color blanco total, dorado y brillos</p>
                 </div>
 
                 <h2 class="anim-el fade-in-up" style="font-size: 2.4rem; margin-top: 20px;">GALERÍA EN VIVO</h2>
@@ -813,7 +838,7 @@
             }
         }
 
-        // --- LIGHTBOX GALERÍA PARA FOTO HERO ---
+        // --- LIGHTBOX GALERÍA PARA FOTOS ---
         function openLightbox(src) {
             const lb = document.getElementById('lightbox');
             const lbImg = document.getElementById('lightbox-img');
