@@ -317,7 +317,7 @@
         .form-group-ed input[type="text"], .form-group-ed select, .form-group-ed textarea { width: 100%; padding: 12px 0; background: transparent; border: none; border-bottom: 1px solid #BBBBBB; border-radius: 0; font-family: var(--font-body); font-size: 1.1rem; color: var(--text-color); outline: none; transition: all 0.3s; }
         .form-group-ed input:focus, .form-group-ed select:focus, .form-group-ed textarea:focus { border-bottom-color: var(--gold); box-shadow: 0 1px 0 var(--gold); }
         
-        /* ESTILOS PASES DINÁMICOS INVYTIA PLATINUM */
+        /* ESTILOS PASES DINÁMICOS INVYTIA PLATINUM & NUMBERED */
         #paseSection { padding-bottom: 20px; border-bottom: 1px dashed rgba(184, 156, 114, 0.5); margin-bottom: 25px;}
         .guest-row { margin-bottom: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 10px; }
         .guest-row label { display: block; font-family: var(--font-sans); font-size: 0.95rem; font-weight: 600; color: var(--main-dark); margin-bottom: 5px; text-transform: none; letter-spacing: 0;}
@@ -546,7 +546,7 @@
                 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://drive.google.com/drive/folders/1G3ZNn5f7qnFHEnZtXMs-zFVCbLaHuP5r?usp=sharing" alt="QR Galería" class="qr-code anim-el scale-in" style="transition-delay: 0.2s;">
                 <a href="https://drive.google.com/drive/folders/1G3ZNn5f7qnFHEnZtXMs-zFVCbLaHuP5r?usp=sharing" target="_blank" class="btn anim-el fade-in-up" style="width: 100%;"><i class="fa-brands fa-google-drive"></i> SUBIR MIS FOTOS</a>
 
-                <!-- RSVP EDITORIAL FORM CON SISTEMA ID PLATINUM -->
+                <!-- RSVP EDITORIAL FORM CON SISTEMA ID PLATINUM Y PASES NUMERADOS -->
                 <div class="editorial-form-box anim-el fade-in-up" style="margin-top: 50px;">
                     <h2 class="rsvp-header">R.S.V.P.</h2>
                     <p class="rsvp-subtitle">Confirmación de Asistencia</p>
@@ -557,7 +557,8 @@
                         <p style="font-size: 1.2rem; font-family: var(--font-body); color: var(--text-color); margin-top: 10px;">Lugares reservados: <span id="guestPassesDisplay" style="font-weight: bold; color: var(--gold); font-size: 1.6rem;"></span></p>
                         
                         <p style="font-family: var(--font-body); font-size: 0.95rem; line-height: 1.6; color: var(--text-color); margin-top: 15px; font-style: italic;">
-                            Queremos compartir este día tan especial con las personas que amamos. Por ello, los lugares han sido reservados especialmente para ti.
+                            Queremos compartir este día tan especial con las personas que nos han acompañado durante estos 20 años. Por ello, estos lugares han sido reservados especialmente para ustedes.<br>
+                            <span style="font-size: 0.8rem; color: #666;">(Los boletos son únicos e intransferibles)</span>
                         </p>
                     </div>
 
@@ -565,7 +566,7 @@
                         <!-- Contenedor dinámico de invitados basado en ID -->
                         <div id="dynamicGuestsContainer"></div>
 
-                        <!-- Fallback si no hay ID válido -->
+                        <!-- Fallback Formulario Genérico (Se usa cuando hay ?p=n o no hay ID) -->
                         <div id="genericRSVPInputs">
                             <div class="form-group-ed">
                                 <label>Nombre Completo:</label>
@@ -729,20 +730,20 @@
             }, { threshold: 0.12 });
             document.querySelectorAll('.anim-el').forEach(el => observer.observe(el));
 
-            // SISTEMA DINAMICO DE PASES (ID)
+            // SISTEMA DINAMICO DE PASES (ID PLATINUM Y NUMERADOS)
             try {
                 const urlParams = new URLSearchParams(window.location.search);
                 const id = urlParams.get('id');
+                const p = urlParams.get('p');
 
                 if (id && guestDB[id]) {
+                    // Lógica Sistema Platinum (Nombres predefinidos)
                     currentGuests = guestDB[id];
                     const numPases = currentGuests.length;
                     
-                    // Actualizar interfaz cabecera de pases
                     document.getElementById('paseSection').style.display = 'block';
                     document.getElementById('guestPassesDisplay').textContent = numPases;
                     
-                    // Formato nombre grupo
                     let groupName = "";
                     if(numPases === 1) groupName = currentGuests[0];
                     else if (numPases <= 2) groupName = currentGuests.join(" y ");
@@ -750,7 +751,6 @@
                     
                     document.getElementById('guestGroupName').textContent = groupName;
 
-                    // Ocultar genericos y generar selects individuales
                     document.getElementById('genericRSVPInputs').style.display = 'none';
                     const dynamicContainer = document.getElementById('dynamicGuestsContainer');
                     
@@ -769,8 +769,14 @@
                     });
 
                     dynamicContainer.innerHTML = htmlContenido;
+                } else if (p && !isNaN(p)) {
+                    // Lógica Sistema Básico de Pases Numerados
+                    document.getElementById('paseSection').style.display = 'block';
+                    document.getElementById('guestPassesDisplay').textContent = p;
+                    document.getElementById('guestGroupName').textContent = "Invitado Especial";
+                    // genericRSVPInputs se mantiene visible automáticamente
                 }
-            } catch (e) { console.log("Error leyendo ID", e); }
+            } catch (e) { console.log("Error leyendo URL params", e); }
 
             // Countdown
             const countDownDate = new Date("Nov 28, 2026 13:40:00").getTime();
@@ -800,7 +806,7 @@
         function sendRSVP() {
             let mensaje = "";
             
-            // Lógica si se usó ID
+            // Lógica si se usó ID Platinum
             if (currentGuests.length > 0) {
                 let todasRespondidas = true;
                 let listaRespuestas = "";
@@ -819,12 +825,20 @@
                 
                 mensaje = `✨ ¡Hola! Somos la confirmación de la invitación especial.\n\nAquí tienes nuestro estatus de asistencia para el 20 Aniversario de Tere y Javier:\n\n${listaRespuestas}`;
             } 
-            // Lógica Fallback genérico
+            // Lógica Fallback o Pases Numerados
             else {
                 const nombre = document.getElementById('rsvpNombre').value.trim();
                 const asistencia = document.getElementById('rsvpAsistencia').value;
                 if(!nombre || !asistencia) { alert("Por favor, completa tu nombre y estado de asistencia."); return; }
-                mensaje = `✨ Hola, soy *${nombre}*.\n\nQuiero confirmar mi respuesta al 20 Aniversario de Tere y Javier: *${asistencia}*\n\n`;
+                
+                let pasesTexto = "";
+                const urlParams = new URLSearchParams(window.location.search);
+                const p = urlParams.get('p');
+                if (p && !isNaN(p)) {
+                    pasesTexto = `(Tengo asignados ${p} lugares)`;
+                }
+
+                mensaje = `✨ Hola, soy *${nombre}* ${pasesTexto}.\n\nQuiero confirmar mi respuesta al 20 Aniversario de Tere y Javier: *${asistencia}*\n\n`;
             }
 
             window.open(`https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
