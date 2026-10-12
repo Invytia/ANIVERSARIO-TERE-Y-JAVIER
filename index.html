@@ -470,25 +470,28 @@
                 <div class="olive-elegant anim-el fade-in-up" style="padding: 40px 30px;">
                     <h2 style="font-size: 2.4rem;">ITINERARIO</h2>
                     <div class="divider"><i class="fa-regular fa-clock"></i></div>
-                    <div class="timeline-section">
-                        <div class="timeline-item anim-el fade-in-left" style="transition-delay: 0.1s;">
+                    
+                    <!-- Para corregir el problema visual de cortes en algunas pantallas, la animación de entrada
+                         ahora se aplica al contenedor completo del itinerario y no a cada evento de manera individual -->
+                    <div class="timeline-section anim-el fade-in-up" style="transition-delay: 0.2s;">
+                        <div class="timeline-item">
                             <div class="timeline-icon"><i class="fa-solid fa-church"></i></div>
                             <div class="timeline-content"><div class="timeline-time">1:40 PM</div><div class="timeline-event">Ceremonia Religiosa</div></div>
                         </div>
-                        <div class="timeline-item anim-el fade-in-left" style="transition-delay: 0.2s;">
+                        <div class="timeline-item">
                             <div class="timeline-icon"><i class="fa-solid fa-utensils"></i></div>
                             <div class="timeline-content"><div class="timeline-time">3:30 - 5:30 PM</div><div class="timeline-event">Recepción y Comida</div></div>
                         </div>
-                        <div class="timeline-item anim-el fade-in-left" style="transition-delay: 0.3s;">
+                        <div class="timeline-item">
                             <div class="timeline-icon"><i class="fa-solid fa-house-chimney"></i></div>
                             <div class="timeline-content"><div class="timeline-time">6:00 PM</div><div class="timeline-event">Seguimos la Fiesta en Casa!</div></div>
                         </div>
-                        <div class="timeline-item anim-el fade-in-left" style="transition-delay: 0.4s;">
+                        <div class="timeline-item">
                             <div class="timeline-icon"><i class="fa-solid fa-music"></i></div>
                             <div class="timeline-content"><div class="timeline-time">9:00 PM</div><div class="timeline-event">Tornafiesta</div></div>
                         </div>
                         
-                        <div class="timeline-item anim-el fade-in-left" style="transition-delay: 0.5s; margin-top: 40px;">
+                        <div class="timeline-item" style="margin-top: 40px;">
                             <div class="timeline-icon"><i class="fa-solid fa-mug-hot"></i></div>
                             <div class="timeline-content">
                                 <div style="font-size: 0.85rem; font-family: var(--font-sans); color: var(--gold-light); font-weight: bold; margin-bottom: 5px; letter-spacing: 2px;">DOMINGO 29 NOV</div>
@@ -688,7 +691,7 @@
         // --- BASE DE DATOS INVITADOS (SISTEMA PLATINUM) ---
         const guestDB = {
             "1": ["Gustavo Cruz", "Luz Maria Zuñiga", "Alejandro Cruz Zuñiga", "Daniel Cruz Zuñiga", "David Cruz Zuñiga"],
-            "2": ["Pedro Zuñiga", "Irma Martinez"],
+            "2": ["Irma Martinez", "Pedro Zuñiga"],
             "3": ["Hansel Zuñiga", "Karla"],
             "4": ["Luis Arturo Estrada", "Evelyn Zuñiga"],
             "5": ["Sergio Zuñiga", "Maria Rosa Medina", "Hannali Zuñiga Medina", "Arlette Zuñiga Medina", "Adriana Zuñiga Medina"],
@@ -712,8 +715,8 @@
             "23": ["Arq. Roberto Acquasaliente", "Arq. Caty Tamayo"],
             "24": ["Sra Rosario Canto"],
             "25": ["Carolina Diosdado", "Felipe Padrò"],
-            "26": ["Enrique Juarez", "y Sra"],
-            "27": ["Mario Olmos", "y Sra"],
+            "26": ["Enrique Juarez", "Sra."],
+            "27": ["Mario Olmos", "Sra."],
             "28": ["Maru Ramos", "Acompañante"]
         };
 
@@ -745,9 +748,24 @@
                     document.getElementById('guestPassesDisplay').textContent = numPases;
                     
                     let groupName = "";
-                    if(numPases === 1) groupName = currentGuests[0];
-                    else if (numPases <= 2) groupName = currentGuests.join(" y ");
-                    else groupName = "Familia " + currentGuests[0].split(' ')[0] + " y acompañantes";
+                    
+                    // Nombres de grupo configurados manualmente
+                    if (id === "1") {
+                        groupName = "Familia Cruz Zuñiga";
+                    } else if (id === "5") {
+                        groupName = "Familia Zuñiga Medina";
+                    } else if (id === "8") {
+                        groupName = "Familia Aguilar Zuñiga";
+                    } else if (id === "9") {
+                        groupName = "Familia Rosales Almaraz";
+                    } else if (id === "17") {
+                        groupName = "Familia Trigo Aja";
+                    } else {
+                        // Nombres de grupo dinámicos para los demás
+                        if(numPases === 1) groupName = currentGuests[0];
+                        else if (numPases <= 2) groupName = currentGuests.join(" y ");
+                        else groupName = "Familia " + currentGuests[0].split(' ')[0] + " y acompañantes";
+                    }
                     
                     document.getElementById('guestGroupName').textContent = groupName;
 
