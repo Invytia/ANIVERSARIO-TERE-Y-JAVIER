@@ -588,7 +588,7 @@
                         <button type="button" onclick="sendRSVP()" class="btn-whatsapp" style="margin-top: 25px;">
                             <i class="fa-brands fa-whatsapp" style="font-size: 1.5rem;"></i> CONFIRMAR ASISTENCIA
                         </button>
-                        <p class="deadline-text">CONFIRMAR ANTES DEL 30 DE OCTUBRE DE 2026</p>
+                        <p class="deadline-text" id="deadlineText">CONFIRMAR ANTES DEL 30 DE OCTUBRE DE 2026</p>
                     </form>
                 </div>
 
@@ -688,6 +688,14 @@
         // --- WHATSAPP CONFIG ---
         const telefonoWhatsApp = "525515128114"; 
 
+        // --- FECHAS LÍMITE DE CONFIRMACIÓN ---
+        const DEADLINE_DEFAULT = "CONFIRMAR ANTES DEL 30 DE OCTUBRE DE 2026";
+        const DEADLINE_EXTENDIDA = "CONFIRMAR ANTES DEL 13 DE NOVIEMBRE DE 2026";
+
+        // IDs de invitados con fecha extendida (13 de noviembre)
+        // 25 = Carolina Diosdado | 27 = Mario Olmos | 28 = Maru Ramos | 29 = Javier Velazquez
+        const idsFechaExtendida = ["25", "27", "28", "29"];
+
         // --- BASE DE DATOS INVITADOS (SISTEMA PLATINUM) ---
         const guestDB = {
             "1": ["Gustavo Cruz", "Luz Maria Zuñiga", "Alejandro Cruz Zuñiga", "Daniel Cruz Zuñiga", "David Cruz Zuñiga"],
@@ -717,7 +725,8 @@
             "25": ["Carolina Diosdado", "Felipe Padrò"],
             "26": ["Enrique Juarez", "Sra."],
             "27": ["Mario Olmos", "Sra."],
-            "28": ["Maru Ramos", "Acompañante"]
+            "28": ["Maru Ramos", "Acompañante"],
+            "29": ["Sr. Javier Velazquez"]
         };
 
         let currentGuests = [];
@@ -738,11 +747,17 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const id = urlParams.get('id');
                 const p = urlParams.get('p');
+                const deadlineEl = document.getElementById('deadlineText');
 
                 if (id && guestDB[id]) {
                     // Lógica Sistema Platinum (Nombres predefinidos)
                     currentGuests = guestDB[id];
                     const numPases = currentGuests.length;
+
+                    // Fecha límite: extendida solo para los IDs indicados
+                    if (deadlineEl) {
+                        deadlineEl.textContent = idsFechaExtendida.includes(id) ? DEADLINE_EXTENDIDA : DEADLINE_DEFAULT;
+                    }
                     
                     document.getElementById('paseSection').style.display = 'block';
                     document.getElementById('guestPassesDisplay').textContent = numPases;
@@ -793,6 +808,11 @@
                     document.getElementById('guestPassesDisplay').textContent = p;
                     document.getElementById('guestGroupName').textContent = "Invitado Especial";
                     // genericRSVPInputs se mantiene visible automáticamente
+
+                    // Pases sin nombre de 1 o 2 lugares: se elimina la fecha límite
+                    if (deadlineEl && (parseInt(p, 10) === 1 || parseInt(p, 10) === 2)) {
+                        deadlineEl.style.display = 'none';
+                    }
                 }
             } catch (e) { console.log("Error leyendo URL params", e); }
 
